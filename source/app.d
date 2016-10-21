@@ -1,6 +1,5 @@
-import std.stdio;
+import dlangui;
 
 void main()
 {
-	writeln("Edit source/app.d to start your project.");
 }
