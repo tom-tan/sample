@@ -1,5 +1,7 @@
 import dlangui;
 
-void main()
+mixin APP_ENTRY_POINT;
+
+extern(C) int UIAppMain(string[] args)
 {
 }
