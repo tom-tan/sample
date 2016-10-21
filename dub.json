@@ -1,0 +1,12 @@
+{
+	"name": "sample",
+	"authors": [
+		"tomoya"
+	],
+	"dependencies": {
+		"dlangui": "~>0.9.40"
+	},
+	"description": "A minimal D application.",
+	"copyright": "Copyright © 2016, tomoya",
+	"license": "proprietary"
+}
