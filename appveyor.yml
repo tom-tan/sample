@@ -80,7 +80,7 @@ before_build:
 
 build_script:
  - echo dummy build script - dont remove me
- - dub build -b release
+ - dub build -b release -a %Darch%
 
 test_script:
  - echo %PLATFORM%
