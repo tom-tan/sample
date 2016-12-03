@@ -2,11 +2,11 @@
 environment:
  matrix:
   - DC: dmd
-    DVersion: 2.071.2
+    DVersion: 2.072.1
     platform: x86
     arch: x86
   - DC: dmd
-    DVersion: 2.071.2
+    DVersion: 2.072.1
     platform: x64
     arch: x64
   - DC: ldc
@@ -51,18 +51,18 @@ install:
               }
               $env:toolchain = "msvc";
               $version = $env:DVersion;
+              Invoke-WebRequest "https://code.dlang.org/files/dub-1.0.0-windows-x86.zip" -OutFile "c:\dub.zip";
+              pushd c:\\;
+              7z x dub.zip -odub > $null;
+              popd;
               Invoke-WebRequest "https://github.com/ldc-developers/ldc/releases/download/v$($version)/ldc2-$($version)-win$($env:Model)-msvc.zip" -OutFile "c:\ldc.zip";
               echo "finished.";
               pushd c:\\;
-              7z x ldc.zip > $null;
+              7z x ldc.zip -oldc2 > $null;
               popd;
             }
         }
   - ps: SetUpDCompiler
-  - powershell -Command Invoke-WebRequest http://code.dlang.org/files/dub-1.0.0-windows-x86.zip -OutFile dub.zip
-  - 7z x dub.zip -odub > nul
-  - set PATH=%CD%\%binpath%;%CD%\dub;%PATH%
-  - dub --version
 
 before_build:
   - ps: if($env:arch -eq "x86"){
@@ -80,7 +80,8 @@ before_build:
          }
          elseif($env:DC -eq "ldc"){
            $version = $env:DVersion;
-           $env:PATH += ";C:\ldc2-$($version)-win$($env:Model)-msvc\bin";
+           $env:PATH += ";C:\ldc2\bin";
+           $env:PATH += ";C:\dub";
            $env:DC = "ldc2";
          }
   - ps: $env:compilersetup = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall";
@@ -95,5 +96,6 @@ test_script:
  - echo %DC%
  - echo %PATH%
  - '%DC% --version'
+ - dub --version
  - dub build -b debug -a %Darch% --compiler=%DC%
  - dub build -b release -a %Darch% --compiler=%DC%
