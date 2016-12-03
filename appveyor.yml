@@ -88,7 +88,6 @@ before_build:
 
 build_script:
  - echo dummy build script - dont remove me
- - dub build -b release -a %Darch%
 
 test_script:
  - echo %PLATFORM%
@@ -96,4 +95,4 @@ test_script:
  - echo %DC%
  - echo %PATH%
  - '%DC% --version'
- # - dub test --arch=%Darch% --compiler=%DC%
+ - dub test --arch=%Darch% --compiler=%DC%
