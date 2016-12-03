@@ -95,4 +95,5 @@ test_script:
  - echo %DC%
  - echo %PATH%
  - '%DC% --version'
- - dub test --arch=%Darch% --compiler=%DC%
+ - dub build -b debug -a %Darch% --compiler=%DC%
+ - dub build -b release -a %Darch% --compiler=%DC%
