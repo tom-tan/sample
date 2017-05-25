@@ -2,11 +2,27 @@
 environment:
  matrix:
   - DC: dmd
+    DVersion: 2.074.0
+    platform: x86
+    arch: x86
+  - DC: dmd
+    DVersion: 2.074.0
+    platform: x64
+    arch: x64
+  - DC: dmd
     DVersion: 2.072.1
     platform: x86
     arch: x86
   - DC: dmd
     DVersion: 2.072.1
+    platform: x64
+    arch: x64
+  - DC: ldc
+    DVersion: '1.2.0'
+    platform: x86
+    arch: x86
+  - DC: ldc
+    DVersion: '1.2.0'
     platform: x64
     arch: x64
   - DC: ldc
