@@ -4,7 +4,7 @@
 		"tomoya"
 	],
 	"dependencies": {
-		"dlangui": "==0.9.48"
+		"dlangui": "==0.9.57"
 	},
 	"description": "A minimal D application.",
 	"copyright": "Copyright © 2016, tomoya",
