@@ -78,6 +78,7 @@ before_build:
            echo "LS";
            ls;
            echo "ls ldc";
+           ls "C:\ldc2-$($version)-win$($env:Dmodel)-msvc";
            ls "C:\ldc2-$($version)-win$($env:Dmodel)-msvc\bin";
            $env:PATH += ";C:\ldc2-$($version)-win$($env:Dmodel)-msvc\bin";
            $env:PATH += ";C:\dub";
