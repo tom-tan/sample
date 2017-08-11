@@ -75,12 +75,13 @@ before_build:
          }
          elseif($env:DC -eq "ldc"){
            $version = $env:DVersion;
+           $model = $env:Model;
            echo "LS";
            ls;
            echo "ls ldc";
-           ls "C:\ldc2-$($version)-win$($env:Dmodel)-msvc";
-           ls "C:\ldc2-$($version)-win$($env:Dmodel)-msvc\bin";
-           $env:PATH += ";C:\ldc2-$($version)-win$($env:Dmodel)-msvc\bin";
+           ls "C:\ldc2-$($version)-win$($model)-msvc";
+           ls "C:\ldc2-$($version)-win$($model)-msvc\bin";
+           $env:PATH += ";C:\ldc2-$($version)-win$($model)-msvc\bin";
            $env:PATH += ";C:\dub";
            $env:DC = "ldc2";
          }
