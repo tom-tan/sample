@@ -3,13 +3,13 @@ platform:
   - x64
 
 environment:
- matrix:
-  - DC: dmd
-    DVersion: 2.075.0
-  - DC: dmd
-    DVersion: 2.072.1
-  - DC: ldc
-    DVersion: 1.3.0
+  matrix:
+    - DC: dmd
+      DVersion: 2.075.0
+    - DC: dmd
+      DVersion: 2.072.1
+    - DC: ldc
+      DVersion: 1.3.0
 
 skip_tags: true
 
@@ -77,13 +77,13 @@ before_build:
   - '"%compilersetup%" %compilersetupargs%'
 
 build_script:
- - echo dummy build script - dont remove me
+  - echo dummy build script - dont remove me
 
 test_script:
- - echo %PLATFORM%
- - echo %Darch%
- - echo %DC%
- - echo %PATH%
- - '%DC% --version'
- - dub build -b debug -a %Darch% --compiler=%DC%
- - dub build -b release -a %Darch% --compiler=%DC%
+  - echo %PLATFORM%
+  - echo %Darch%
+  - echo %DC%
+  - echo %PATH%
+  - '%DC% --version'
+  - dub build -b debug -a %Darch% --compiler=%DC%
+  - dub build -b release -a %Darch% --compiler=%DC%
