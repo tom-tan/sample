@@ -2,6 +2,10 @@ platform:
   - x86
   - x64
 
+arch:
+  - x86
+  - x64
+
 environment:
   matrix:
     - DC: dmd
@@ -10,6 +14,13 @@ environment:
       DVersion: 2.072.1
     - DC: ldc
       DVersion: 1.3.0
+
+matrix:
+  exclude:
+    - platform: x86
+      arch: x64
+    - platform: x64
+      arch: x86
 
 skip_tags: true
 
