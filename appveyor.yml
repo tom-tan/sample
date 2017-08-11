@@ -54,8 +54,6 @@ install:
               echo "finished.";
               pushd c:\\;
               7z x ldc.zip > $null;
-              echo "LS";
-              ls;
               popd;
             }
         }
@@ -77,6 +75,10 @@ before_build:
          }
          elseif($env:DC -eq "ldc"){
            $version = $env:DVersion;
+           echo "LS";
+           ls;
+           echo "ls ldc";
+           ls "C:\ldc2-$($version)-win$($env:Dmodel)-msvc\bin";
            $env:PATH += ";C:\ldc2-$($version)-win$($env:Dmodel)-msvc\bin";
            $env:PATH += ";C:\dub";
            $env:DC = "ldc2";
