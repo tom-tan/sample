@@ -1,38 +1,25 @@
-# platform: x64
+platform:
+  - x86
+  - x64
+
 environment:
  matrix:
   - DC: dmd
     DVersion: 2.075.0
-    platform: x86
-    arch: x86
   - DC: dmd
     DVersion: 2.075.0
-    platform: x64
-    arch: x64
   - DC: dmd
     DVersion: 2.072.1
-    platform: x86
-    arch: x86
   - DC: dmd
     DVersion: 2.072.1
-    platform: x64
-    arch: x64
   - DC: ldc
-    DVersion: '1.2.0'
-    platform: x86
-    arch: x86
+    DVersion: 1.2.0
   - DC: ldc
-    DVersion: '1.2.0'
-    platform: x64
-    arch: x64
+    DVersion: 1.2.0
   - DC: ldc
-    DVersion: '1.0.0'
-    platform: x86
-    arch: x86
+    DVersion: 1.0.0
   - DC: ldc
-    DVersion: '1.0.0'
-    platform: x64
-    arch: x64
+    DVersion: 1.0.0
 
 skip_tags: true
 
@@ -40,10 +27,10 @@ install:
   - ps: function SetUpDCompiler
         {
             if($env:DC -eq "dmd"){
-              if($env:arch -eq "x86"){
+              if($env:platform -eq "x86"){
                 $env:DConf = "m32";
               }
-              elseif($env:arch -eq "x64"){
+              elseif($env:platform -eq "x64"){
                 $env:DConf = "m64";
               }
               echo "downloading ...";
@@ -57,11 +44,11 @@ install:
             }
             elseif($env:DC -eq "ldc"){
               echo "downloading ...";
-              if($env:arch -eq "x86"){
+              if($env:platform -eq "x86"){
                 $env:DConf = "m32";
                 $env:Model = "32";
               }
-              elseif($env:arch -eq "x64"){
+              elseif($env:platform -eq "x64"){
                 $env:DConf = "m64";
                 $env:Model = "64";
               }
@@ -75,18 +62,20 @@ install:
               echo "finished.";
               pushd c:\\;
               7z x ldc.zip > $null;
+              echo "LS";
+              ls;
               popd;
             }
         }
   - ps: SetUpDCompiler
 
 before_build:
-  - ps: if($env:arch -eq "x86"){
+  - ps: if($env:platform -eq "x86"){
             $env:compilersetupargs = "x86";
             $env:Darch = "x86";
             $env:Model = "32";
           }
-        elseif($env:arch -eq "x64"){
+        elseif($env:platform -eq "x64"){
             $env:compilersetupargs = "amd64";
             $env:Darch = "x86_64";
             $env:Model = "64";
