@@ -10,12 +10,6 @@ environment:
     DVersion: 2.072.1
   - DC: ldc
     DVersion: 1.3.0
-  - DC: ldc
-    DVersion: 1.2.0
-  - DC: ldc
-    DVersion: 1.1.1
-  - DC: ldc
-    DVersion: 1.0.0
 
 skip_tags: true
 
@@ -50,10 +44,6 @@ install:
               }
               $env:toolchain = "msvc";
               $version = $env:DVersion;
-              Invoke-WebRequest "https://code.dlang.org/files/dub-1.0.0-windows-x86.zip" -OutFile "c:\dub.zip";
-              pushd c:\\;
-              7z x dub.zip -odub > $null;
-              popd;
               Invoke-WebRequest "https://github.com/ldc-developers/ldc/releases/download/v$($version)/ldc2-$($version)-win$($env:Model)-msvc.zip" -OutFile "c:\ldc.zip";
               echo "finished.";
               pushd c:\\;
@@ -81,7 +71,6 @@ before_build:
            $version = $env:DVersion;
            $model = $env:Model;
            $env:PATH += ";C:\ldc2-$($version)-win$($model)-msvc\bin";
-           $env:PATH += ";C:\dub";
            $env:DC = "ldc2";
          }
   - ps: $env:compilersetup = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall";
